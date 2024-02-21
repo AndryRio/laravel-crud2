@@ -75,8 +75,9 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit($id)
     {
+        $contact=Contact::find($id);
         return view('contacts.edit', compact('contact'));
     }
 
