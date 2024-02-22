@@ -27,12 +27,12 @@ Route::get('/contacts/create', 'ContactController@create')->name('contacts.creat
 
 Route::post('/contacts/store', 'ContactController@store')->name('contacts.store');
 
-Route::delete('/contacts/destroy', 'ContactController@destroy')->name('contacts.destroy');
+Route::delete('/contacts/destroy/{id}', 'ContactController@destroy')->name('contacts.destroy');
 
-Route::get('/contacts/show', 'ContactController@show')->name('contacts.show');
+Route::get('/contacts/show/{id}', 'ContactController@show')->name('contacts.show');
 
 Route::get('/contacts/edit/{id}', 'ContactController@edit')->name('contacts.edit');
 
-Route::get('/contacts/update', 'ContactController@update')->name('contacts.update');
+Route::put('/contacts/update/{id}', 'ContactController@update')->name('contacts.update');
 
 

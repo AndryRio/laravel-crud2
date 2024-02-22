@@ -64,8 +64,9 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show($id)
     {
+        $contact=Contact::find($id);
         return view('contacts.show', compact('contact'));
     }
 
@@ -88,9 +89,10 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, $id)
     {
         // validate the input
+        $contact=Contact::find($id);
         $request->validate([
             'name' => 'required',
             'number' =>'required'
@@ -109,9 +111,10 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
         //delete the contact
+        $contact=Contact::find($id);
         $contact->delete();
 
         //redirect the user and display message
