@@ -35,4 +35,4 @@ Route::get('/contacts/edit/{id}', 'ContactController@edit')->name('contacts.edit
 
 Route::put('/contacts/update/{id}', 'ContactController@update')->name('contacts.update');
 
-
+Route::get('/testrole', 'Admin\UserController@addRoleToUser')->name('test');
