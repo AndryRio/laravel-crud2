@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use App\Exports\ContactExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class ContactController extends Controller
@@ -119,5 +121,10 @@ class ContactController extends Controller
 
         //redirect the user and display message
         return redirect()->route('contacts.index')->with('success','Contact deleted successfully');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ContactExport, 'contacts.xlsx');
     }
 }

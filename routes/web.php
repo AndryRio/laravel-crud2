@@ -35,6 +35,8 @@ Route::get('/contacts/edit/{id}', 'ContactController@edit')->name('contacts.edit
 
 Route::put('/contacts/update/{id}', 'ContactController@update')->name('contacts.update');
 
+Route::get('/contacts/export', 'ContactController@export')->name('contacts.export');
+
 Route::get('/testadmin', 'Admin\UserController@addAdminRoleToUser')->name('admin');
 
 Route::get('/testuser', 'Admin\UserController@addUserRoleToUser')->name('user');

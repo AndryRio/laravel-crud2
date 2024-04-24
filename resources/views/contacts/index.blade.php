@@ -9,6 +9,7 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('contacts.create') }}"> Add New Phone Number</a>
+                <a class="btn btn-success" href="{{ route('contacts.export') }}"> Download List</a>
             </div>
         </div>
     </div>
