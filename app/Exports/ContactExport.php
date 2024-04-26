@@ -12,6 +12,7 @@ class ContactExport implements FromCollection
     */
     public function collection()
     {
-        return Contact::all();
+      //return Contact::all();
+        return Contact::get(array('name','number'));
     }
 }
