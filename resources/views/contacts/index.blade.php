@@ -25,6 +25,8 @@
             <th>ID</th>
             <th>Name</th>
             <th>Phone Number</th>
+            <th>Date</th>
+            <th>Time</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($contacts as $contact)
@@ -32,6 +34,8 @@
                 <td>{{ $contact->id }}</td>
                 <td>{{ $contact->name }}</td>
                 <td>{{ $contact->number }}</td>
+                <td>{{ $contact->created_at->format('d/m/Y') }}</td>
+                <td>{{ $contact->created_at->format('h:m:s') }}</td>
                 <td>
                     <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Show</a>
