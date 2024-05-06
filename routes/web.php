@@ -19,23 +19,54 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', [
+    'as'=> 'home',
+    'uses' => 'HomeController@index',
+]);
 
 Route::get('/contacts', 'ContactController@index')->name('contacts.index');
 
-Route::get('/contacts/create', 'ContactController@create')->name('contacts.create');
+//Route::get('/contacts/create', 'ContactController@create')->name('contacts.create');
 
-Route::post('/contacts/store', 'ContactController@store')->name('contacts.store');
+//Route::post('/contacts/store', 'ContactController@store')->name('contacts.store');
 
-Route::delete('/contacts/destroy/{id}', 'ContactController@destroy')->name('contacts.destroy');
+//Route::delete('/contacts/destroy/{id}', 'ContactController@destroy')->name('contacts.destroy');
 
 Route::get('/contacts/show/{id}', 'ContactController@show')->name('contacts.show');
 
-Route::get('/contacts/edit/{id}', 'ContactController@edit')->name('contacts.edit');
+//Route::get('/contacts/edit/{id}', 'ContactController@edit')->name('contacts.edit');
 
-Route::put('/contacts/update/{id}', 'ContactController@update')->name('contacts.update');
+//Route::put('/contacts/update/{id}', 'ContactController@update')->name('contacts.update');
 
 Route::get('/contacts/export', 'ContactController@export')->name('contacts.export');
+
+
+Route::prefix('contacts')->middleware('auth')->group(function () {
+    Route::name('contacts.')->group(function () {
+        Route::get('/create', [
+            'as' => 'create',
+            'uses' => 'ContactController@create',
+        ]);
+        Route::post('/store', [
+            'as' => 'store',
+            'uses' => 'ContactController@store',
+        ]);
+        Route::delete('/destroy/{id}', [
+            'as' => 'destroy',
+            'uses' => 'ContactController@destroy',
+        ]);
+        Route::get('/edit/{id}', [
+            'as' => 'edit',
+            'uses' => 'ContactController@edit',
+        ]);
+        Route::put('/update/{id}', [
+            'as' => 'update',
+            'uses' => 'ContactController@update',
+        ]);
+    });
+});
 
 Route::get('/testadmin', 'Admin\UserController@addAdminRoleToUser')->name('admin');
 

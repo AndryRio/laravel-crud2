@@ -9,9 +9,13 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Style;
+use Maatwebsite\Excel\Concerns\WithDefaultStyles;
 
 
-class ContactExport implements FromCollection, WithColumnFormatting, ShouldAutoSize, WithMapping
+class ContactExport implements FromCollection, WithColumnFormatting, ShouldAutoSize, WithMapping,
+    WithDefaultStyles
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -40,5 +44,13 @@ class ContactExport implements FromCollection, WithColumnFormatting, ShouldAutoS
             'D' => NumberFormat::FORMAT_DATE_TIME4,
         ];
     }
+
+     public function defaultStyles(Style $defaultStyle)
+     {
+         // Configure the default styles
+         return $defaultStyle->getFill()->setFillType(Fill::FILL_SOLID);
+
+     }
+
 
 }
