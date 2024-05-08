@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Contact;
 use Illuminate\Http\Request;
 use App\Exports\ContactExport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-
 
 class ContactController extends Controller
 {
@@ -35,7 +35,12 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contacts.create');
+        if (Auth::user()->hasRole('admin')){
+            return view('contacts.create');
+        }
+        else{
+            abort(403, 'You dont have access to this page!');
+        }
     }
 
     /**
@@ -46,18 +51,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        // validate the input
-        $request->validate([
-            'name' => 'required',
-            'number' =>'required'
-        ]);
+        if (Auth::user()->hasRole('admin')){
+            // validate the input
+            $request->validate([
+                'name' => 'required',
+                'number' =>'required'
+            ]);
 
-        // create a new contact in the database
-        Contact::create($request->all());
+            // create a new contact in the database
+            Contact::create($request->all());
 
-        // redirect the user and send friendly message
-        return redirect()->route('contacts.index')->with('success','Contact created successfully');
-
+            // redirect the user and send friendly message
+            return redirect()->route('contacts.index')->with('success','Contact created successfully');
+        }
+        else{
+            abort(403, 'You dont have access to this page!');
+        }
     }
 
     /**
@@ -80,8 +89,13 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact=Contact::find($id);
-        return view('contacts.edit', compact('contact'));
+        if (Auth::user()->hasRole('admin')){
+            $contact=Contact::find($id);
+            return view('contacts.edit', compact('contact'));
+        }
+        else{
+            abort(403, 'You dont have access to this page!');
+        }
     }
 
     /**
@@ -93,18 +107,23 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // validate the input
-        $contact=Contact::find($id);
-        $request->validate([
-            'name' => 'required',
-            'number' =>'required'
-        ]);
+        if (Auth::user()->hasRole('admin')){
+            // validate the input
+            $contact=Contact::find($id);
+            $request->validate([
+                'name' => 'required',
+                'number' =>'required'
+            ]);
 
-        // create a new contact in the database
-        $contact->update($request->all());
+            // create a new contact in the database
+            $contact->update($request->all());
 
-        // redirect the user and send friendly message
-        return redirect()->route('contacts.index')->with('success','Contact updated successfully');
+            // redirect the user and send friendly message
+            return redirect()->route('contacts.index')->with('success','Contact updated successfully');
+        }
+        else{
+            abort(403, 'You dont have access to this page!');
+        }
     }
 
     /**
@@ -115,16 +134,22 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //delete the contact
-        $contact=Contact::find($id);
-        $contact->delete();
+        if (Auth::user()->hasRole('admin')){
+            //delete the contact
+            $contact=Contact::find($id);
+            $contact->delete();
 
-        //redirect the user and display message
-        return redirect()->route('contacts.index')->with('success','Contact deleted successfully');
+            //redirect the user and display message
+            return redirect()->route('contacts.index')->with('success','Contact deleted successfully');
+        }
+        else{
+            abort(403, 'You dont have access to this page!');
+        }
     }
 
     public function export()
     {
         return Excel::download(new ContactExport, 'contacts.xlsx');
     }
+
 }
