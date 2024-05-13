@@ -39,7 +39,8 @@ class ContactController extends Controller
             return view('contacts.create');
         }
         else{
-            abort(403, 'You dont have access to this page!');
+            //abort(403, 'You dont have access to this page!');
+            return redirect()->route('contacts.index')->with('success', 'You dont have access to this command!');
         }
     }
 
@@ -65,7 +66,8 @@ class ContactController extends Controller
             return redirect()->route('contacts.index')->with('success','Contact created successfully');
         }
         else{
-            abort(403, 'You dont have access to this page!');
+            //abort(403, 'You dont have access to this page!');
+            return redirect()->route('contacts.index')->with('success', 'You dont have access to this command!');
         }
     }
 
@@ -94,7 +96,8 @@ class ContactController extends Controller
             return view('contacts.edit', compact('contact'));
         }
         else{
-            abort(403, 'You dont have access to this page!');
+            //abort(403, 'You dont have access to this page!');
+            return redirect()->route('contacts.index')->with('success', 'You dont have access to this command!');
         }
     }
 
@@ -122,7 +125,8 @@ class ContactController extends Controller
             return redirect()->route('contacts.index')->with('success','Contact updated successfully');
         }
         else{
-            abort(403, 'You dont have access to this page!');
+            //abort(403, 'You dont have access to this page!');
+            return redirect()->route('contacts.index')->with('success', 'You dont have access to this command!');
         }
     }
 
@@ -143,7 +147,8 @@ class ContactController extends Controller
             return redirect()->route('contacts.index')->with('success','Contact deleted successfully');
         }
         else{
-            abort(403, 'You dont have access to this page!');
+            //abort(403, 'You dont have access to this page!');
+            return redirect()->route('contacts.index')->with('success', 'You dont have access to this command!');
         }
     }
 
