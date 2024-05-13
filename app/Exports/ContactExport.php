@@ -14,8 +14,8 @@ use PhpOffice\PhpSpreadsheet\Style\Style;
 use Maatwebsite\Excel\Concerns\WithDefaultStyles;
 
 
-class ContactExport implements FromCollection, WithColumnFormatting, ShouldAutoSize, WithMapping,
-    WithDefaultStyles
+class ContactExport implements FromCollection, WithColumnFormatting, ShouldAutoSize, WithMapping
+    //WithDefaultStyles
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -45,12 +45,12 @@ class ContactExport implements FromCollection, WithColumnFormatting, ShouldAutoS
         ];
     }
 
-     public function defaultStyles(Style $defaultStyle)
+     /*public function defaultStyles(Style $defaultStyle)
      {
          // Configure the default styles
          return $defaultStyle->getFill()->setFillType(Fill::FILL_SOLID);
 
-     }
+     }*/
 
 
 }

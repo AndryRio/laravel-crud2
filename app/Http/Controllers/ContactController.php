@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\User;
 use Illuminate\Http\Request;
 use App\Exports\ContactExport;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,8 @@ class ContactController extends Controller
         else{
             //abort(403, 'You dont have access to this page!');
             return redirect()->route('contacts.index')->with('success', 'You dont have access to this command!');
+            //return response()->make('Error');
+            //return response()->json(User::all());
         }
     }
 
