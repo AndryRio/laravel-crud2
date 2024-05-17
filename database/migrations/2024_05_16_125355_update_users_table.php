@@ -16,6 +16,7 @@ class UpdateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('name', 100)->change();
             $table->date('date_of_birth')->nullable()->after('email');
+          //$table->foreign('id')->references('number')->on('contacts');
         });
     }
 
@@ -27,7 +28,8 @@ class UpdateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            Schema::dropIfExists('users');
+            $table->string('name', 255)->change();
+            $table->dropColumn('date_of_birth');
         });
     }
 }
