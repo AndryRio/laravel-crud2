@@ -14,8 +14,8 @@ class ContactsTableSeeder extends Seeder
     {
 
         DB::table('contacts')->insert([
-            'name' => 'John Ross',
-            'email' => 'ross@gmail.com',
+            'name' => Str::random(10),
+            'number' => '3425234231',
         ]);
 
         /*$factory->define(User::class, function (Faker\Generator $faker) {
