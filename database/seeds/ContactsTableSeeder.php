@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Support\Facades\DB;
 
 class ContactsTableSeeder extends Seeder
 {
@@ -13,10 +14,10 @@ class ContactsTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('contacts')->insert([
+        /*DB::table('contacts')->insert([
             'name' => Str::random(10),
-            'number' => '3425234231',
-        ]);
+            'number' => random_int(3000000000, 3999999999),
+        ]);*/
 
         /*$factory->define(User::class, function (Faker\Generator $faker) {
            return [
@@ -29,5 +30,7 @@ class ContactsTableSeeder extends Seeder
                 'name' => $faker->name,
             ];
         });*/
+
+        factory(App\Contact::class, 50)->create();
     }
 }
