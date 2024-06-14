@@ -31,6 +31,6 @@ class ContactsTableSeeder extends Seeder
             ];
         });*/
 
-        factory(App\Contact::class, 50)->create();
+        factory(App\Contact::class, 10)->create();
     }
 }

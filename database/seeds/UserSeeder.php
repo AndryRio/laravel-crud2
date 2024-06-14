@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
             $user->posts()->save(factory(App\User::class)->make());
         });*/
 
-        factory(App\User::class, 50)->create();
+        //DB::table('users')->truncate();
+
+        factory(App\User::class, 25)->create();
     }
 }
