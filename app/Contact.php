@@ -9,6 +9,15 @@ class Contact extends Model
 
     protected $fillable = [
         'name',
-        'number'
+        'number',
     ];
+
+    //protected $primaryKey = 'number';
+
+    //protected $keyType = 'string';
+
+    protected $attributes = [
+        'admin' => false,
+    ];
+
 }

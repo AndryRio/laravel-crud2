@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Exports\ContactExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -27,6 +28,7 @@ class ContactController extends Controller
         $contacts = Contact::latest()->paginate(5);
 
         return view('contacts.index', compact('contacts'))->with(request()->input('page'));
+
     }
 
     /**
