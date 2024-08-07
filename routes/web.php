@@ -30,6 +30,8 @@ Route::get('/contacts/show/{id}', 'ContactController@show')->name('contacts.show
 
 Route::get('/contacts/export', 'ContactController@export')->name('contacts.export');
 
+Route::get('/contacts/star', 'ContactController@star')->name('contacts.star');
+
 //Route::group(['middleware' => $user->HasRole('admin')], function (){
     Route::prefix('contacts')->middleware('auth')->group(function () {
         Route::name('contacts.')->group(function () {
@@ -68,6 +70,7 @@ Route::get('/testdelete', 'Admin\UserController@deleteRoleToUser')->name('delete
 /*Route::get('something-you-cant-do', function (\Illuminate\Http\Request $request) {
    abort(403, 'You dont have access to this page!');
 });*/
+
 
 
 

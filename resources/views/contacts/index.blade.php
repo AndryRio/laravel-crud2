@@ -38,6 +38,7 @@
                 <td>{{ $contact->created_at->format('h:m:s') }}</td>
                 <td>
                     <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
+                        <a class="btn btn-info" href="{{ route('contacts.star',$contact->id) }}">Star</a>
                         <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Show</a>
                         <a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Edit</a>
                         @csrf

@@ -162,4 +162,10 @@ class ContactController extends Controller
         return Excel::download(new ContactExport, 'contacts.xlsx');
     }
 
+    public function star()
+    {
+        $contact = Contact::first();
+        $contact->stars()->create();
+    }
+
 }
